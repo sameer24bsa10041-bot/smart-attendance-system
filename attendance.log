@@ -1,0 +1,99 @@
+2025-09-25 22:08:59,666 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-25 22:09:06,525 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-25 22:09:06,526 - attendance_system - INFO - Login attempt - Type: student - User: S001 - IP: 127.0.0.1
+2025-09-25 22:09:07,124 - attendance_system - INFO - Student login successful - User: S001 - IP: 127.0.0.1
+2025-09-25 22:09:07,151 - attendance_system - INFO - GET /student_dashboard - User: S001 - IP: 127.0.0.1
+2025-09-25 22:09:07,303 - attendance_system - INFO - GET /get_attendance - User: S001 - IP: 127.0.0.1
+2025-09-25 22:09:07,827 - attendance_system - INFO - GET /get_face_status - User: S001 - IP: 127.0.0.1
+2025-09-25 22:09:38,930 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-25 22:10:09,774 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-25 22:12:12,970 - attendance_system - INFO - GET /logout - User: S001 - IP: 127.0.0.1
+2025-09-25 22:12:12,978 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-25 22:12:29,508 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-25 22:12:29,509 - attendance_system - INFO - Login attempt - Type: faculty - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:29,974 - attendance_system - INFO - Faculty login successful - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:30,002 - attendance_system - INFO - GET /faculty_dashboard - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:35,873 - attendance_system - INFO - GET /profile - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:37,068 - attendance_system - INFO - GET /reports - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:37,403 - attendance_system - INFO - GET /api/attendance_data - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:40,507 - attendance_system - INFO - GET /faculty_dashboard - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:42,211 - attendance_system - INFO - GET /manage_students - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:48,730 - attendance_system - INFO - POST /add_student - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:49,273 - attendance_system - INFO - Student added: Sameer jain (S005) - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:50,312 - attendance_system - INFO - GET /manage_students - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:55,090 - attendance_system - INFO - GET /logout - User: F001 - IP: 127.0.0.1
+2025-09-25 22:12:55,100 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-25 22:13:07,044 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-25 22:13:07,045 - attendance_system - INFO - Login attempt - Type: student - User: S005 - IP: 127.0.0.1
+2025-09-25 22:13:07,601 - attendance_system - INFO - Student login successful - User: S005 - IP: 127.0.0.1
+2025-09-25 22:13:07,622 - attendance_system - INFO - GET /student_dashboard - User: S005 - IP: 127.0.0.1
+2025-09-25 22:13:07,697 - attendance_system - INFO - GET /get_attendance - User: S005 - IP: 127.0.0.1
+2025-09-25 22:13:07,971 - attendance_system - INFO - GET /get_face_status - User: S005 - IP: 127.0.0.1
+2025-09-25 22:13:26,676 - attendance_system - INFO - GET /logout - User: S005 - IP: 127.0.0.1
+2025-09-25 22:13:26,686 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:29:44,135 - attendance_system - INFO - GET / - User: S001 - IP: 127.0.0.1
+2025-09-26 22:29:50,986 - attendance_system - INFO - POST /login - User: S001 - IP: 127.0.0.1
+2025-09-26 22:29:50,986 - attendance_system - INFO - Login attempt - Type: student - User: S001 - IP: 127.0.0.1
+2025-09-26 22:29:51,297 - attendance_system - INFO - Student login successful - User: S001 - IP: 127.0.0.1
+2025-09-26 22:29:51,329 - attendance_system - INFO - GET /student_dashboard - User: S001 - IP: 127.0.0.1
+2025-09-26 22:29:51,516 - attendance_system - INFO - GET /get_attendance - User: S001 - IP: 127.0.0.1
+2025-09-26 22:29:55,115 - attendance_system - INFO - GET /get_face_status - User: S001 - IP: 127.0.0.1
+2025-09-26 22:30:28,627 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-26 22:30:35,065 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-26 22:34:58,416 - attendance_system - INFO - GET / - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:07,237 - attendance_system - INFO - POST /login - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:07,237 - attendance_system - INFO - Login attempt - Type: student - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:07,585 - attendance_system - INFO - Student login successful - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:07,607 - attendance_system - INFO - GET /student_dashboard - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:07,802 - attendance_system - INFO - GET /get_attendance - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:08,307 - attendance_system - INFO - GET /get_face_status - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:16,933 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:26,860 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:33,027 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:39,434 - attendance_system - INFO - POST /register_face - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:52,113 - attendance_system - INFO - GET /logout - User: S001 - IP: 127.0.0.1
+2025-09-26 22:35:52,125 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:35:59,628 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:35:59,628 - attendance_system - INFO - Login attempt - Type: faculty - User: F001 - IP: 127.0.0.1
+2025-09-26 22:35:59,941 - attendance_system - INFO - Faculty login successful - User: F001 - IP: 127.0.0.1
+2025-09-26 22:35:59,979 - attendance_system - INFO - GET /faculty_dashboard - User: F001 - IP: 127.0.0.1
+2025-09-26 22:36:09,235 - attendance_system - INFO - POST /mark_attendance - User: F001 - IP: 127.0.0.1
+2025-09-26 22:36:20,252 - attendance_system - INFO - GET /logout - User: F001 - IP: 127.0.0.1
+2025-09-26 22:36:20,263 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:36:26,256 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:36:26,258 - attendance_system - INFO - Login attempt - Type: student - User: S001 - IP: 127.0.0.1
+2025-09-26 22:36:26,581 - attendance_system - INFO - Student login successful - User: S001 - IP: 127.0.0.1
+2025-09-26 22:36:26,602 - attendance_system - INFO - GET /student_dashboard - User: S001 - IP: 127.0.0.1
+2025-09-26 22:36:26,673 - attendance_system - INFO - GET /get_attendance - User: S001 - IP: 127.0.0.1
+2025-09-26 22:36:26,984 - attendance_system - INFO - GET /get_face_status - User: S001 - IP: 127.0.0.1
+2025-09-26 22:36:34,193 - attendance_system - INFO - GET /logout - User: S001 - IP: 127.0.0.1
+2025-09-26 22:36:34,203 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:38:29,281 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:38:36,544 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:38:36,546 - attendance_system - INFO - Login attempt - Type: student - User: S001 - IP: 127.0.0.1
+2025-09-26 22:38:36,873 - attendance_system - INFO - Student login successful - User: S001 - IP: 127.0.0.1
+2025-09-26 22:38:36,914 - attendance_system - INFO - GET /student_dashboard - User: S001 - IP: 127.0.0.1
+2025-09-26 22:38:37,092 - attendance_system - INFO - GET /get_attendance - User: S001 - IP: 127.0.0.1
+2025-09-26 22:38:37,562 - attendance_system - INFO - GET /get_face_status - User: S001 - IP: 127.0.0.1
+2025-09-26 22:38:42,031 - attendance_system - INFO - GET /logout - User: S001 - IP: 127.0.0.1
+2025-09-26 22:38:42,040 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:38:47,600 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:38:47,602 - attendance_system - INFO - Login attempt - Type: faculty - User: F001 - IP: 127.0.0.1
+2025-09-26 22:38:47,956 - attendance_system - WARNING - Login failed - invalid credentials - User: F001 - IP: 127.0.0.1
+2025-09-26 22:38:55,149 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:38:55,152 - attendance_system - INFO - Login attempt - Type: faculty - User: F001 - IP: 127.0.0.1
+2025-09-26 22:38:55,469 - attendance_system - INFO - Faculty login successful - User: F001 - IP: 127.0.0.1
+2025-09-26 22:38:55,497 - attendance_system - INFO - GET /faculty_dashboard - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:03,474 - attendance_system - INFO - POST /mark_attendance - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:13,908 - attendance_system - INFO - POST /mark_attendance - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:24,640 - attendance_system - INFO - GET /manage_students - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:39,250 - attendance_system - INFO - POST /add_student - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:39,662 - attendance_system - INFO - Student added: uttkarsh singh (S005) - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:40,695 - attendance_system - INFO - GET /manage_students - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:45,128 - attendance_system - INFO - GET /faculty_dashboard - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:46,692 - attendance_system - INFO - GET /reports - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:46,793 - attendance_system - INFO - GET /api/attendance_data - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:53,913 - attendance_system - INFO - GET /logout - User: F001 - IP: 127.0.0.1
+2025-09-26 22:39:53,924 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:43:05,883 - attendance_system - INFO - GET / - User: Unknown - IP: 127.0.0.1
+2025-09-26 22:43:14,184 - attendance_system - INFO - POST /login - User: Unknown - IP: 127.0.0.1

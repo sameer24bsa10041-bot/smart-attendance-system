@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Reports - Smart Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-chart-bar"></i> Attendance Reports</h1>
+            <div class="user-info">
+                <span>Welcome, {{ session.name }}</span>
+                <a href="/faculty_dashboard" class="btn">Back to Dashboard</a>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Statistics Cards -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ total_students }}</h3>
+                        <p>Unique Students</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ total_records }}</h3>
+                        <p>Total Records</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ subject_stats|length }}</h3>
+                        <p>Subjects</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h3>Daily Attendance Trend</h3>
+                    <canvas id="attendanceChart" width="400" height="200"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Subject Distribution</h3>
+                    <canvas id="subjectChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Attendance -->
+            <div class="recent-attendance">
+                <h3>Recent Attendance (Last 7 Days)</h3>
+                <div class="attendance-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Subject</th>
+                                <th>Students Present</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in recent_attendance %}
+                            <tr>
+                                <td>{{ record[0] }}</td>
+                                <td>{{ record[1] }}</td>
+                                <td>{{ record[2] }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="3" class="no-data">No recent attendance data</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Export Section -->
+            <div class="export-section">
+                <h3>Export Data</h3>
+                <div class="export-options">
+                    <button class="btn" onclick="exportCSV()">
+                        <i class="fas fa-download"></i> Export as CSV
+                    </button>
+                    <button class="btn" onclick="printReport()">
+                        <i class="fas fa-print"></i> Print Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load chart data
+        async function loadCharts() {
+            const response = await fetch('/api/attendance_data');
+            const data = await response.json();
+
+            // Daily Attendance Chart
+            const ctx1 = document.getElementById('attendanceChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: data.daily.map(item => item.date),
+                    datasets: [{
+                        label: 'Students Present',
+                        data: data.daily.map(item => item.count),
+                        borderColor: '#1a2a6c',
+                        backgroundColor: 'rgba(26, 42, 108, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Daily Attendance Trend' }
+                    }
+                }
+            });
+
+            // Subject Distribution Chart
+            const ctx2 = document.getElementById('subjectChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: data.subjects.map(item => item.subject),
+                    datasets: [{
+                        data: data.subjects.map(item => item.count),
+                        backgroundColor: [
+                            '#1a2a6c', '#b21f1f', '#fdbb2d', '#4CAF50',
+                            '#2196F3', '#FF9800', '#9C27B0'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        function exportCSV() {
+            // Simple CSV export implementation
+            const table = document.querySelector('table');
+            const rows = table.querySelectorAll('tr');
+            let csv = [];
+            
+            rows.forEach(row => {
+                const rowData = [];
+                row.querySelectorAll('th, td').forEach(cell => {
+                    rowData.push(cell.innerText);
+                });
+                csv.push(rowData.join(','));
+            });
+            
+            const csvContent = csv.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'attendance_report.csv';
+            a.click();
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        // Load charts when page is ready
+        document.addEventListener('DOMContentLoaded', loadCharts);
+    </script>
+</body>
+</html>

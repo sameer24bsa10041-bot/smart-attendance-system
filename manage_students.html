@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students - Smart Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-users"></i> Manage Students</h1>
+            <div class="user-info">
+                <nav class="dashboard-nav">
+                    <a href="/faculty_dashboard" class="nav-link">
+                        <i class="fas fa-camera"></i> Mark Attendance
+                    </a>
+                    <a href="/reports" class="nav-link">
+                        <i class="fas fa-chart-bar"></i> Reports
+                    </a>
+                    <a href="/manage_students" class="nav-link active">
+                        <i class="fas fa-users"></i> Manage Students
+                    </a>
+                </nav>
+                <span>Welcome, {{ session.name }}</span>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Add Student Form -->
+            <div class="add-student-form">
+                <h3>Add New Student</h3>
+                <form id="addStudentForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="student_id">Student ID</label>
+                            <input type="text" id="student_id" name="student_id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email (Optional)</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <button type="submit" class="btn">
+                            <i class="fas fa-plus"></i> Add Student
+                        </button>
+                    </div>
+                </form>
+                <div id="addStudentResult"></div>
+            </div>
+
+            <!-- Students List -->
+            <div class="student-list">
+                <h3>Current Students ({{ students|length }})</h3>
+                <div id="studentsContainer">
+                    {% for student in students %}
+                    <div class="student-item" id="student-{{ student[0] }}">
+                        <div class="student-info">
+                            <h4>{{ student[1] }} ({{ student[0] }})</h4>
+                            <p>{{ student[3] if student[3] else 'No email provided' }}</p>
+                            <small>Password: student123 (default)</small>
+                        </div>
+                        <div class="student-actions">
+                            <button class="btn btn-danger" onclick="deleteStudent('{{ student[0] }}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="no-students">
+                        <i class="fas fa-users-slash"></i>
+                        <p>No students found. Add your first student above.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add Student Form Handler
+        document.getElementById('addStudentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const studentData = {
+                student_id: formData.get('student_id'),
+                name: formData.get('name'),
+                email: formData.get('email')
+            };
+            
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+            btn.disabled = true;
+            
+            try {
+                const response = await fetch('/add_student', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(studentData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('Student added successfully!', 'success');
+                    this.reset();
+                    // Reload the page to show new student
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    showMessage(result.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error adding student', 'error');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+        
+        // Delete Student Function
+        async function deleteStudent(studentId) {
+            if (!confirm(`Are you sure you want to delete student ${studentId}? This will also delete their attendance records.`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/delete_student/${studentId}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('Student deleted successfully!', 'success');
+                    // Remove student from list
+                    document.getElementById(`student-${studentId}`).remove();
+                } else {
+                    showMessage(result.message, 'error');
+                }
+            } catch (error) {
+                showMessage('Error deleting student', 'error');
+            }
+        }
+        
+        // Utility function to show messages
+        function showMessage(message, type) {
+            const resultDiv = document.getElementById('addStudentResult');
+            resultDiv.innerHTML = `
+                <div class="message ${type}">
+                    <i class="fas fa-${type === 'success' ? 'check' : 'exclamation'}-circle"></i>
+                    ${message}
+                </div>
+            `;
+            
+            setTimeout(() => {
+                resultDiv.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

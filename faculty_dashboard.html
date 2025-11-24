@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - Smart Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-chalkboard-teacher"></i> Faculty Dashboard</h1>
+            <div class="user-info">
+                <!-- COMPLETE FACULTY NAVIGATION -->
+                <nav class="dashboard-nav">
+                    <a href="/faculty_dashboard" class="nav-link active">
+                        <i class="fas fa-camera"></i> Mark Attendance
+                    </a>
+                    <a href="/reports" class="nav-link">
+                        <i class="fas fa-chart-bar"></i> Reports
+                    </a>
+                    <a href="/manage_students" class="nav-link">
+                        <i class="fas fa-users"></i> Manage Students
+                    </a>
+                    <a href="/profile" class="nav-link">
+                        <i class="fas fa-user-circle"></i> Profile
+                    </a>
+                </nav>
+                <span>Welcome, {{ session.name }}</span>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </header>
+
+        <!-- Rest of your faculty dashboard content remains the same -->
+        <div class="dashboard-content">
+            <div class="camera-section">
+                <h2>Mark Attendance</h2>
+                
+                <div class="video-container">
+                    <video id="video" width="640" height="480" autoplay></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                </div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label>Subject:</label>
+                        <select id="subject-select">
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Computer Science">Computer Science</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group" id="test-student-group" style="display: none;">
+                        <label>Test Student:</label>
+                        <select id="test-student-select">
+                            <option value="S001">John Doe (S001)</option>
+                            <option value="S002">Jane Smith (S002)</option>
+                            <option value="S003">Mike Johnson (S003)</option>
+                            <option value="S004">Sarah Wilson (S004)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="capture-btn" class="btn">Capture & Recognize</button>
+                        <button id="test-mode-btn" class="btn btn-secondary">Enable Test Mode</button>
+                    </div>
+                </div>
+                
+                <div id="result" class="result-container"></div>
+            </div>
+
+            <div class="attendance-list">
+                <h2>Recent Attendance</h2>
+                <button id="refresh-btn" class="btn">Refresh List</button>
+                <div id="attendance-records">
+                    <p class="no-records">No recent attendance records. Start marking attendance above.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='faculty_dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='validation.js') }}"></script>
+<script src="{{ url_for('static', filename='session_manager.js') }}"></script>
+</body>
+</html>

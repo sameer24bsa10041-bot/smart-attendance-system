@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Smart Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-user-graduate"></i> Student Dashboard</h1>
+            <div class="user-info">
+                <nav class="dashboard-nav">
+                    <a href="/student_dashboard" class="nav-link active">Dashboard</a>
+                    <a href="/profile" class="nav-link">Profile</a>
+                </nav>
+                <span>Welcome, {{ session.name }} ({{ session.user_id }})</span>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Face Registration Section -->
+            <div class="face-registration">
+                <h2>📸 Face Registration</h2>
+                <p class="registration-info">
+                    <i class="fas fa-info-circle"></i>
+                    For best recognition, register 3-4 images from different angles
+                </p>
+                
+                <div class="registration-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0/4 images registered</div>
+                </div>
+
+                <div class="video-container">
+                    <video id="video" width="100%" height="auto" autoplay playsinline muted></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    
+                    <div class="capture-instructions">
+                        <h4>Capture Instructions:</h4>
+                        <div class="instruction-steps">
+                            <div class="instruction-step">
+                                <span class="step-number">1</span>
+                                <span>Look straight at the camera</span>
+                            </div>
+                            <div class="instruction-step">
+                                <span class="step-number">2</span>
+                                <span>Turn head slightly left</span>
+                            </div>
+                            <div class="instruction-step">
+                                <span class="step-number">3</span>
+                                <span>Turn head slightly right</span>
+                            </div>
+                            <div class="instruction-step">
+                                <span class="step-number">4</span>
+                                <span>Natural expression</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="capture-controls">
+                    <button id="capture-btn" class="btn btn-primary">
+                        <i class="fas fa-camera"></i> Capture Image <span id="currentImage">1</span>/4
+                    </button>
+                    <button id="reset-btn" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Start Over
+                    </button>
+                </div>
+
+                <div class="captured-images" id="capturedImages">
+                    <h4>Captured Images:</h4>
+                    <div class="images-grid" id="imagesGrid">
+                        <!-- Captured images will appear here -->
+                    </div>
+                </div>
+
+                <div id="registration-result"></div>
+            </div>
+
+            <div class="attendance-records">
+                <h2>My Attendance Records</h2>
+                <button id="refresh-btn" class="btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Attendance
+                </button>
+                <div id="attendance-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='student_dashboard.js') }}"></script>
+</body>
+</html>

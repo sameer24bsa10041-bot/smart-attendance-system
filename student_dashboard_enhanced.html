@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Smart Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .angle-instructions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .angle-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+        }
+        .angle-card.active {
+            border-color: #4CAF50;
+            background: #f8fff8;
+        }
+        .angle-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        .current-angle {
+            background: #4CAF50 !important;
+            color: white;
+        }
+        .capture-feedback {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success-feedback { color: #4CAF50; }
+        .error-feedback { color: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-user-graduate"></i> Student Dashboard</h1>
+            <div class="user-info">
+                <span>Welcome, {{ session.name }} ({{ session.user_id }})</span>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Face Registration Section -->
+            <div class="face-registration">
+                <h2><i class="fas fa-camera"></i> Face Registration</h2>
+                
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <h3>Registration Progress</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">0/4 images registered</div>
+                    </div>
+                </div>
+
+                <!-- Camera Section -->
+                <div class="camera-section">
+                    <div class="video-container">
+                        <video id="video" width="100%" height="400" autoplay playsinline muted></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                    </div>
+                    
+                    <!-- Angle Instructions -->
+                    <div class="angle-instructions">
+                        <div class="angle-card" id="angle1">
+                            <div class="angle-icon">👤</div>
+                            <h4>Front View</h4>
+                            <p>Look straight at camera</p>
+                            <div class="angle-status" id="status1">❌ Not captured</div>
+                        </div>
+                        <div class="angle-card" id="angle2">
+                            <div class="angle-icon">↖️</div>
+                            <h4>Left Side</h4>
+                            <p>Turn head slightly left</p>
+                            <div class="angle-status" id="status2">❌ Not captured</div>
+                        </div>
+                        <div class="angle-card" id="angle3">
+                            <div class="angle-icon">↗️</div>
+                            <h4>Right Side</h4>
+                            <p>Turn head slightly right</p>
+                            <div class="angle-status" id="status3">❌ Not captured</div>
+                        </div>
+                        <div class="angle-card" id="angle4">
+                            <div class="angle-icon">😊</div>
+                            <h4>Natural Expression</h4>
+                            <p>Smile naturally</p>
+                            <div class="angle-status" id="status4">❌ Not captured</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <button id="capture-btn" class="btn btn-primary">
+                        <i class="fas fa-camera"></i> 
+                        <span id="capture-text">Capture Front View (1/4)</span>
+                    </button>
+                    <button id="reset-btn" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Start Over
+                    </button>
+                </div>
+
+                <!-- Feedback -->
+                <div class="capture-feedback" id="feedback"></div>
+
+                <!-- Results -->
+                <div class="results">
+                    <h4>Captured Images:</h4>
+                    <div class="thumbnails" id="thumbnails">
+                        <!-- Thumbnails will appear here -->
+                    </div>
+                </div>
+
+                <div id="registration-result"></div>
+            </div>
+
+            <div class="attendance-records">
+                <h2><i class="fas fa-clipboard-list"></i> My Attendance Records</h2>
+                <button id="refresh-btn" class="btn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <div id="attendance-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='student_enhanced.js') }}"></script>
+</body>
+</html>

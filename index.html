@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-section">
+            <div class="logo">
+                <i class="fas fa-user-check"></i>
+            </div>
+            <h1>Smart Attendance System</h1>
+            <p>Revolutionizing attendance tracking with advanced face recognition technology. Quick, secure, and efficient for both faculty and students.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-camera"></i>
+                    <span>Face Recognition</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-database"></i>
+                    <span>Secure Database</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Attendance Analytics</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Friendly</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-section">
+            <div class="tabs">
+                <div class="tab active" data-tab="faculty">Faculty Login</div>
+                <div class="tab" data-tab="student">Student Login</div>
+            </div>
+            
+            <form id="faculty-form" class="login-form active">
+                <div class="form-group">
+                    <label for="faculty-id">Faculty ID</label>
+                    <input type="text" id="faculty-id" placeholder="Enter your faculty ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="faculty-password">Password</label>
+                    <input type="password" id="faculty-password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn">Login as Faculty</button>
+                
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </form>
+            
+            <form id="student-form" class="login-form">
+                <div class="form-group">
+                    <label for="student-id">Student ID</label>
+                    <input type="text" id="student-id" placeholder="Enter your student ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-password">Password</label>
+                    <input type="password" id="student-password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn">Login as Student</button>
+                
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
